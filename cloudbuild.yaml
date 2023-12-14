@@ -20,3 +20,4 @@ steps:
       - '--allow-unauthenticated'
 images:
   - 'gcr.io/$PROJECT_ID/snapcat-image:$COMMIT_SHA'
+logsBucket: 'gs://koplak-bucket/logs'
