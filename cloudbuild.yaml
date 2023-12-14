@@ -3,11 +3,13 @@ steps:
     args: ['build', '-t', 'gcr.io/$PROJECT_ID/snapcat-image:$COMMIT_SHA', '.']
   - name: gcr.io/cloud-builders/docker
     args: ['push', 'gcr.io/$PROJECT_ID/snapcat-image:$COMMIT_SHA']
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['auth', 'configure-docker']
   - name: gcr.io/google.com/cloudsdktool/cloud-sdk
     entrypoint: gcloud
     args:
-      - run
-      - deploy
+      - 'run'
+      - 'deploy'
       - 'api-model-snapcat'
       - '--image'
       - 'gcr.io/$PROJECT_ID/snapcat-image:$COMMIT_SHA'
